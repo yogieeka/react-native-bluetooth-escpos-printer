@@ -72,8 +72,8 @@ public class PrinterCommand {
     public static byte[] POS_Set_Cut(int cut) {
         if (cut > 255 | cut < 0) return null;
 
-        byte[] data = Arrays.copyOf(Command.GS_V_m_n, Command.GS_V_m_n.length);
-        data[3] = (byte) cut;
+        byte[] data = Arrays.copyOf(Command.ESC_d, Command.ESC_d.length);
+        data[2] = (byte) cut;
         return data;
     }
 

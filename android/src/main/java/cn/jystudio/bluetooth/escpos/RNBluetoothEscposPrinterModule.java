@@ -428,10 +428,27 @@ public class RNBluetoothEscposPrinterModule extends ReactContextBaseJavaModule
     }
 
     @ReactMethod
-    public void printBarCode(String str, int nType, int nWidthX, int nHeight,
-                             int nHriFontType, int nHriFontPosition) {
+    public void printBarCode(String str, int nType, int nWidthX, int nHeight, int nHriFontType, int nHriFontPosition) {
         byte[] command = PrinterCommand.getBarCodeCommand(str, nType, nWidthX, nHeight, nHriFontType, nHriFontPosition);
         sendDataByte(command);
+    }
+
+    @ReactMethod
+    public void cutPaper(int line, final Promise promise) {
+        if(sendDataByte(PrinterCommand.POS_Set_Cut(line))){
+            promise.resolve(null);
+        } else {
+            promise.reject("COMMAND_NOT_SEND");
+        }
+    }
+
+    @ReactMethod
+    public void openCashDrawer(int nMode, int nTime1, int nTime2, final Promise promise) {
+        if(sendDataByte(PrinterCommand.POS_Set_Cashbox(nMode, nTime1, nTime2))){
+            promise.resolve(null);
+        }else{
+            promise.reject("COMMAND_NOT_SEND");
+        }
     }
 
     private boolean sendDataByte(byte[] data) {

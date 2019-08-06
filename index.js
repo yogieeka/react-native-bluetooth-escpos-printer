@@ -142,5 +142,10 @@ BluetoothEscposPrinter.ALIGN={
     RIGHT:2
 };
 
+BluetoothEscposPrinter.FULL_CUT = 0;
+BluetoothEscposPrinter.PARTIAL_CUT = 1;
+BluetoothEscposPrinter.FULL_CUT_WITH_FEED = 2;
+BluetoothEscposPrinter.PARTIAL_CUT_WITH_FEED = 3;
+
  module.exports ={
     BluetoothManager,BluetoothEscposPrinter,BluetoothTscPrinter};
